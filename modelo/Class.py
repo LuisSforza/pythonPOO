@@ -37,33 +37,6 @@ class Persona:
     def toString(self):
         return "Datos usuario:\n {} \n {} \n {}".format(self.getName(),self.getAge(),self.getSex())
 
-class Usuario(Persona): #Implica la herencia
-    
-    phone = ''
-    email = ''
-    region = ''
-    country = ''
-
-    def __init__(self, phone,email,region,country):
-        self.phone = phone
-        self.email = email
-        self.region = region
-        country = country
-
-    def getCountry(self):
-        return self.country
-
-    def getRegion(self):
-        return self.region
-
-    def getEmail(self):
-        return self.email
-
-    def getPhone(self):
-        return self.phone
-    
-    def toString(self):
-        return "Datos usuario:\n {} \n {} \n {} \n {} \n {} \n {} \n {}".format(self.getName(),self.getAge(),self.getSex(),self.getPhone(),self.getEmail(),self.getRegion(),self.getCountry())
 
 class UsuarioDAO:
 
@@ -78,8 +51,6 @@ class UsuarioDAO:
             list.append(user)
         
         return list
-
-
 
 
 i = 0
