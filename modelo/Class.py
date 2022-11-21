@@ -95,3 +95,4 @@ while i < len(list):
     print(i)
     print(list[i].toString())
     i +=1
+print()
