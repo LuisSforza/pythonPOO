@@ -1,4 +1,4 @@
-from modelo.Class import conexion,Persona,Usuario
+from modelo.Class import PersonaDAO
 
 def menu():
     
@@ -25,18 +25,33 @@ def menuVer():
     ======= 1.Ver todas los usuarios
     ======= 2.Ver usuario en especifico
     ======= 3.Salir
-    Opcion:"""))   
+    Opcion:"""))
+
+def verUsuarios():
+
+   usuarios = PersonaDAO.listarUsuario()
+
+   for usuario in usuarios:
+      print("""
+      ========== {} ==========
+      ====== Edad: {}
+      ====== Sexo: {}
+      """.format(usuario.getName(),usuario.getAge(),usuario.getSex()))
+
+def verUsuario():
+   name = input("Ingresar el nombre:")
+   usuario = PersonaDAO.getUsuario(name)
+
+   print("""
+   ========== {} ==========
+   ====== Edad: {}
+   ====== Sexo: {}
+   """.format(usuario.getName(),usuario.getAge(),usuario.getSex()))
    
 def main():
 
     op = menu()
     while(op != 5):
-
-        if(op == 1):
-            ingresarCiudad()
-
-        if(op == 2):
-            modificarCiudad()
 
         if(op == 3):
             
@@ -46,25 +61,11 @@ def main():
 
                 if(opVer == 1):
                     verUsuarios()
-                
                 if(opVer == 2):
                     verUsuario()
-
+               
                 opVer = menuVer()
-
             print("\t=========== Ciudad visualizada ===========")
-
-        if(op == 4):
-
-            print("\nElimnar ciudad")
-
-            ciudad = input("\nIngresar el nombre de la ciudad a eliminar:")
-
-            if deleteCiudad(ciudad):
-                print("\n ========== Ciudad elimnana exitosamente ==========")
-            else:
-                print("========== Error ==========")
-
         op = menu()
 
     print("\t=========== Programa finalizado ===========")

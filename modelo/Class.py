@@ -38,7 +38,7 @@ class Persona:
         return "Datos usuario:\n {} \n {} \n {}".format(self.getName(),self.getAge(),self.getSex())
 
 
-class UsuarioDAO:
+class PersonaDAO:
 
     def listarUsuario():
 
@@ -51,19 +51,14 @@ class UsuarioDAO:
             list.append(user)
         
         return list
+    
+    def getUsuario(name):
 
+        conexion = getConexion()
 
-i = 0
-list = UsuarioDAO.listarUsuario()
+        usuario = conexion.find_one({'name': name})
+        
+        user = Persona(usuario['name'],usuario['age'],usuario['sex'])
 
-#p = Persona("Luis",28,"Hombre");
-#p2 = Persona("Manuel",28,"Hombre");
+        return user
 
-#list.append(p)
-#list.append(p2)
-
-while i < len(list):
-    print(i)
-    print(list[i].toString())
-    i +=1
-print()
