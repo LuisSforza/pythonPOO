@@ -61,4 +61,20 @@ class PersonaDAO:
         user = Persona(usuario['name'],usuario['age'],usuario['sex'])
 
         return user
+    
+    def setUsuario(name,age,sex):
+
+        conexion = getConexion()
+
+        respuesta = conexion.insert_one({'name':name, 'age':age,'sex':sex})
+
+        return respuesta.acknowledged
+    
+    def deleteUsuario(name):
+        conexion = getConexion()
+
+        respuesta = conexion.delete_one({'name': name})
+
+        return respuesta.acknowledged
+
 

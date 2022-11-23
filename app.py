@@ -39,7 +39,7 @@ def verUsuarios():
       """.format(usuario.getName(),usuario.getAge(),usuario.getSex()))
 
 def verUsuario():
-   name = input("Ingresar el nombre:")
+   name = input("\nIngresar el nombre:")
    usuario = PersonaDAO.getUsuario(name)
 
    print("""
@@ -47,11 +47,35 @@ def verUsuario():
    ====== Edad: {}
    ====== Sexo: {}
    """.format(usuario.getName(),usuario.getAge(),usuario.getSex()))
+
+def ingresarUsuario(name,age,sex):
+
+   respuesta = PersonaDAO.setUsuario(name,age,sex)
+
+   return respuesta
+
+def eliminarUsuario(name):
+
+   respuesta = PersonaDAO.deleteUsuario(name)
+
+   return respuesta
    
 def main():
 
     op = menu()
     while(op != 5):
+
+        if(op == 1):
+            print("Agregar usuario")
+            nombre = input("Ingresar nombre:")
+            edad = int(input("Ingresar edad:"))
+            sex = input("Ingresar sexo:")
+
+            if ingresarUsuario(nombre,edad,sex):
+               print("Usuario ingresado exitosamente")
+            else:
+               print("Hubo un error")
+
 
         if(op == 3):
             
@@ -66,6 +90,15 @@ def main():
                
                 opVer = menuVer()
             print("\t=========== Ciudad visualizada ===========")
+        if(op == 4):
+            print(" =========== Eliminar Usuario ===========")
+            nombre = input("Ingresar nombre:")
+
+            if eliminarUsuario(nombre):
+               print("Usuario eliminado exitosamente")
+            else:
+               print("Hubo un error")
+
         op = menu()
 
     print("\t=========== Programa finalizado ===========")
